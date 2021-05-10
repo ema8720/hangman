@@ -11,7 +11,7 @@ const Hangman = function (word, remainingGuesses) {
     this.word = word.toLowerCase().split('')
     this.remainingGuesses = remainingGuesses
     // setting up an instance property to store guessed letters.
-    this.guessedLetters = ['c','a']
+    this.guessedLetters = []
 }
 
 
@@ -48,8 +48,12 @@ Hangman.prototype.makeGuess = function (guess) {
 }
 
 const game1 = new Hangman('cat', 2);
-    game1.makeGuess('c')
-    game1.makeGuess('t')
-    game1.makeGuess('z')
 console.log(game1.getPuzzle())
 console.log(game1.remainingGuesses)
+
+window.addEventListener('keypress', function (e) {
+    const guess = String.fromCharCode(e.charCode)
+    console.log(game1.getPuzzle())
+    console.log(game1.remainingGuesses)
+})
+
