@@ -33,9 +33,7 @@ const Hangman = function (word, remainingGuesses) {
 Hangman.prototype.calculateStatus = function () {
     // option 3
     // Every only works when every single item in the array passes 
-    const finished = this.word.every((letter) =>{
-        return this.guessedLetters.includes(letter)
-    })
+    const finished = this.word.every((letter) => this.guessedLetters.includes(letter))
 
     /*
     // option 2 on recalculating status
