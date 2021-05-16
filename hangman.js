@@ -31,12 +31,19 @@ const Hangman = function (word, remainingGuesses) {
 
 // Create method for recalculating status to "playing", "finished", or "failed"
 Hangman.prototype.calculateStatus = function () {
+    // option 3
+    // Every only works when every single item in the array passes 
+    const finished = this.word.every((letter) =>{
+        return this.guessedLetters.includes(letter)
+    })
+
+    /*
     // option 2 on recalculating status
     const lettersUnguessed = this.word.filter((letter) => {
         return !this.guessedLetters.includes(letter)
     })
     const finished = lettersUnguessed.length === 0
-
+*/
 
     // option 1 on recalculating status
     /* 
@@ -49,6 +56,7 @@ Hangman.prototype.calculateStatus = function () {
         }
     })
     */
+
     if (this.remainingGuesses === 0 ) {
         this.status = 'failed'
     } else if (finished) {
