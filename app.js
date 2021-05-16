@@ -19,16 +19,16 @@ const guessesEl = document.querySelector('#guesses')
 const game1 = new Hangman('cat', 2)
 // Display the guesses and remaining guesses
 puzzleEl.textContent = game1.getPuzzle()
-guessesEl.textContent = game1.remainingGuesses
-console.log(game1.status)
+guessesEl.textContent = game1.getStatusMessage()
+
 
 window.addEventListener('keypress', function(e) {
     const guess = e.key;
     game1.makeGuess(guess)
     // Now this should be showing to the browser: ***
     puzzleEl.textContent = game1.getPuzzle()
-    guessesEl.textContent = game1.remainingGuesses
-    console.log(game1.status);
+    guessesEl.textContent = game1.getStatusMessage()
+
 })
 
 // 1. Setup new status property with initial value of "playing"
