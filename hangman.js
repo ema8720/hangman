@@ -1,82 +1,33 @@
-// 1. Set up the word instance property as an array of lower case letters.
-// 2. Set up another instance property to store guessed letters.
-// 3. Create a method that gives you the word puzzle back.
-
-// No guess --> ***
-// Guessed "c", "b", and "t"? -> c*t
-
-
-const Hangman = function (word, remainingGuesses) {
-    // set up a word instance property as an array of lower cases.
-    this.word = word.toLowerCase().split('')
-    this.remainingGuesses = remainingGuesses
-    // setting up an instance property to store guessed letters.
-    this.guessedLetters = []
-    // created a status property with the initial value set to "playing"
-    this.status = 'playing'
-
-}
-
-// ----------------------------------------------------------
-
-// 1. Setup new status property with initial value of "playing"
-// 2. Create method for recalculating status to "playing", "finished", or "failed"
-// 3. Call that method after making a guess is processed.
-// 4. Use console.log to print the status.
-
-//  Start the game and see "playing"
-//  Make two incorrect guesses to see "failed"
-//  Refresh the browser and guess "c", "a", and "t" to see "finished"
-
-
-// Create method for recalculating status to "playing", "finished", or "failed"
-Hangman.prototype.calculateStatus = function () {
-    // option 3
-    // Every only works when every single item in the array passes 
-    const finished = this.word.every((letter) => this.guessedLetters.includes(letter))
-
-    /*
-    // option 2 on recalculating status
-    const lettersUnguessed = this.word.filter((letter) => {
-        return !this.guessedLetters.includes(letter)
-    })
-    const finished = lettersUnguessed.length === 0
-*/
-
-    // option 1 on recalculating status
-    /* 
-    let finished = true 
-   this.word.forEach((letter) => {
-        if (this.guessedLetters.includes(letter)) {
-
+class Hangman {
+    constructor(word, remainingGuesses) {
+           // set up a word instance property as an array of lower cases.
+      this.word = word.toLowerCase().split('')
+      this.remainingGuesses = remainingGuesses
+      // setting up an instance property to store guessed letters.
+      this.guessedLetters = []
+      // created a status property with the initial value set to "playing"
+      this.status = 'playing'
+    }
+    calculateStatus() {
+        const finished = this.word.every((letter) => this.guessedLetters.includes(letter))  
+        if (this.remainingGuesses === 0 ) {
+            this.status = 'failed'
+        } else if (finished) {
+            this.status = 'finished'
         } else {
-            finished = false
+            this.status = 'playing'
         }
-    })
-    */
-
-    if (this.remainingGuesses === 0 ) {
-        this.status = 'failed'
-    } else if (finished) {
-        this.status = 'finished'
-    } else {
-        this.status = 'playing'
     }
-}
-// set up a method to get back a status message
-Hangman.prototype.getStatusMessage = function () {
-    if (this.status === 'playing') {
-        return   `Guesses left: ${this.remainingGuesses}`
-    }  else if (this.status === 'failed') {
-      return `Nice try! The word was "${this.word.join('')}".`
-    } else {
-        return `Great work you guessed the word!`
+    getStatusMessage() {
+        if (this.status === 'playing') {
+            return   `Guesses left: ${this.remainingGuesses}`
+        }  else if (this.status === 'failed') {
+          return `Nice try! The word was "${this.word.join('')}".`
+        } else {
+            return `Great work you guessed the word!`
+        }  
     }
-  }
-
-
-// We are creating a method that gives us a the word puzzle back.
-Hangman.prototype.getPuzzle = function () {
+   getPuzzle() {
     let puzzle = ''
     this.word.forEach((letter) => {
         if (this.guessedLetters.includes(letter)) {
@@ -87,15 +38,8 @@ Hangman.prototype.getPuzzle = function () {
     })
     
     return puzzle
-}
-
-// Create a method for making a guess. Calling it makeGuess
-// 1. Should accept a character for guessing.
-// 2. Should add unique guesses to list of guesses.
-// 3. Should decrement the guesses left if a unique guess isn't a match.
-
-// This is the first option
-Hangman.prototype.makeGuess = function (guess) {
+   }
+   makeGuess(guess) {
     guess = guess.toLowerCase()
     const isUnique = !this.guessedLetters.includes(guess)
     const isBadGuess = !this.word.includes(guess)
@@ -114,30 +58,6 @@ Hangman.prototype.makeGuess = function (guess) {
             //this.remainingGuesses = this.remainingGuesses - 1 
         }
         this.calculateStatus()
-} 
-
-// This is a second option
-/*
-Hangman.prototype.makeGuess = function(guess){
-    var guess = guess.toLowerCase()
-    if (!this.guessedLetters.includes(guess) && !this.word.includes(guess)){
-        this.guessedLetters.push(guess)
-        this.remainingGuesses = this.remainingGuesses - 1 
- 
-    } else if (this.guessedLetters.includes(guess) || this.word.includes(guess)) {
-        this.guessedLetters.push(guess)
-        this.remainingGuesses = this.remainingGuesses 
-    }
+   }
 }
-*/
-
-
-// ----------------------------------------------------------
-
-
-
-
-
-
-
 
