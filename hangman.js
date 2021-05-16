@@ -12,6 +12,40 @@ const Hangman = function (word, remainingGuesses) {
     this.remainingGuesses = remainingGuesses
     // setting up an instance property to store guessed letters.
     this.guessedLetters = []
+    // created a status property with the initial value set to "playing"
+    this.status = 'playing'
+
+}
+
+// ----------------------------------------------------------
+
+// 1. Setup new status property with initial value of "playing"
+// 2. Create method for recalculating status to "playing", "finished", or "failed"
+// 3. Call that method after making a guess is processed.
+// 4. Use console.log to print the status.
+
+//  Start the game and see "playing"
+//  Make two incorrect guesses to see "failed"
+//  Refresh the browser and guess "c", "a", and "t" to see "finished"
+
+
+// Create method for recalculating status to "playing", "finished", or "failed"
+Hangman.prototype.calculateStatus = function () {
+    let finished = true
+    this.word.forEach((letter) => {
+        if (this.guessedLetters.includes(letter)) {
+
+        } else {
+            finished = false
+        }
+    })
+    if (this.remainingGuesses === 0 ) {
+        this.status = 'failed'
+    } else if (finished) {
+        this.status = 'finished'
+    } else {
+        this.status = 'playing'
+    }
 }
 
 
@@ -46,6 +80,7 @@ Hangman.prototype.makeGuess = function (guess) {
             this.remainingGuesses--
             //this.remainingGuesses = this.remainingGuesses - 1 
         }
+        this.calculateStatus()
 } 
 
 // This is a second option
@@ -62,10 +97,9 @@ Hangman.prototype.makeGuess = function(guess){
     }
 }
 */
-// Display the puzzle to the browser instead of the console.
-// Display the guesses left to the browser instead of the console.
-// Separate the Hangman definition from the rest of the app code.
 
+
+// ----------------------------------------------------------
 
 
 
