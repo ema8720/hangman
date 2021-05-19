@@ -18,16 +18,16 @@ const puzzleEl = document.querySelector('#puzzle')
 const guessesEl = document.querySelector('#guesses')
 const game1 = new Hangman('cat', 2)
 // Display the guesses and remaining guesses
-puzzleEl.textContent = game1.getPuzzle()
-guessesEl.textContent = game1.getStatusMessage()
+puzzleEl.textContent = game1.puzzle
+guessesEl.textContent = game1.StatusMessage
 
 
 window.addEventListener('keypress', function(e) {
     const guess = e.key;
     game1.makeGuess(guess)
     // Now this should be showing to the browser: ***
-    puzzleEl.textContent = game1.getPuzzle()
-    guessesEl.textContent = game1.getStatusMessage()
+    puzzleEl.textContent = game1.puzzle
+    guessesEl.textContent = game1.StatusMessage
 
 })
 
