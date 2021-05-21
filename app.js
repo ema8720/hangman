@@ -40,3 +40,19 @@ window.addEventListener('keypress', function(e) {
 //  Make two incorrect guesses to see "failed"
 //  Refresh the browser and guess "c", "a", and "t" to see "finished"
 
+// HTTP (Hypertext Transfer Protocol)
+// Request -- What do we want to do.
+// Response -- What was actually done. 
+
+const request = new XMLHttpRequest()
+
+
+request.addEventListener('readystatechange', (e) => {
+    if (e.target.readyState === 4 ) {
+        const data = JSON.parse(e.target.responseText)
+        console.log(data);
+    }
+})
+
+request.open('GET', 'http://puzzle.mead.io/puzzle')
+request.send()
