@@ -53,6 +53,16 @@ getPuzzle("1",(error, puzzle) => {
    
 })
 
+
+getCountry('PR', (error, country) => {
+    if (error) {
+        console.log(error);
+    } else {
+      console.log(`Country name: ${country.name}`);  
+    }
+
+})
+
 // 1. Create a new function for getting country details
 // 2. Call it with two arguments: country code, the callback function
 // 3. Make the HTTP request and call the callback with country information
@@ -77,21 +87,5 @@ getPuzzle("1",(error, puzzle) => {
 // // 3. Find your country object by it's country code (alpha2Code property)
 // // 4. Print the full country name (name property)
 
-// const countryCode = "US"
-// const countryRequest = new XMLHttpRequest()
 
-// countryRequest.addEventListener('readystatechange', (e) => {
-//     if (e.target.readyState === 4 && e.target.status === 200) {
-//         const data = JSON.parse(e.target.responseText)
-//         const country = data.find((country) =>  
-//             country.alpha2Code === countryCode) 
-//             console.log(country.name);
-//     } else if  (e.target.readyState === 4) {
-//         console.log("Unable to fetch data.");
-//     }
-// })
-
-
-// countryRequest.open('GET', "http://restcountries.eu/rest/v2/all" )
-// countryRequest.send()
 
